@@ -2,158 +2,104 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Slidebars Development</title>
+		<title>Slidebars Dev Page</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="slidebars.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<style>
-			.transition-500 {
-				-webkit-transition-duration: 500ms;
-				transition-duration: 500ms;
-			}
-
-			.transition-1000 {
-				-webkit-transition-duration: 1000ms;
-				transition-duration: 1000ms;
-			}
-		</style>
+		<link rel="stylesheet" href="style.css">
 	</head>
 
 	<body>
 		<div canvas="container">
-			<button id="open-top">Open top</button>
-			<button id="open-right">Open right</button>
-			<button id="open-bottom">Open bottom</button>
-			<button id="open-left">Open left</button>
-			<button id="close-top">Close top</button>
-			<button id="close-any">Close any</button>
-			<button id="destroy-top">Destroy top</button>
-			<button id="check-top">Check top</button>
-			<button id="check-any">Check any</button>
-			<button id="exit">Exit</button>
-			<button id="init">Init</button>
-			<button id="get">Get</button>
-			<button id="modify-bottom">Modify to bottom</button>
-			<button id="modify-top">Modify to top</button>
+			<h1>Slidebars Dev Page</h1>
+
+			<p>You'd need to open the console to view the results of some of these tests.</p>
+
+			<h4>Left Slidebar Controls</h4>
+
+			<p>
+				<button class="js-open-left-slidebar">Open left Slidebar</button>
+				<button class="js-close-left-slidebar">Close left Slidebar</button>
+				<button class="js-toggle-left-slidebar">Toggle left Slidebar</button>
+			</p>
+
+			<h4>Right Slidebar Controls</h4>
+
+			<p>
+				<button class="js-open-right-slidebar">Open right Slidebar</button>
+				<button class="js-close-right-slidebar">Close right Slidebar</button>
+				<button class="js-toggle-right-slidebar">Toggle right Slidebar</button>
+			</p>
+
+			<h4>Top Slidebar Controls</h4>
+
+			<p>
+				<button class="js-open-top-slidebar">Open top Slidebar</button>
+				<button class="js-close-top-slidebar">Close top Slidebar</button>
+				<button class="js-toggle-top-slidebar">Toggle top Slidebar</button>
+			</p>
+
+			<h4>Bottom Slidebar Controls</h4>
+
+			<p>
+				<button class="js-open-bottom-slidebar">Open bottom Slidebar</button>
+				<button class="js-close-bottom-slidebar">Close bottom Slidebar</button>
+				<button class="js-toggle-bottom-slidebar">Toggle bottom Slidebar</button>
+			</p>
+
+			<h4>Other Controls</h4>
+
+			<p>
+				<button class="js-close-any-slidebar">Close any Slidebar</button>
+			</p>
+
+			<h4>Initialization, Exit and CSS Reset</h4>
+
+			<p>
+				<button class="js-initialize-slidebars">Initialize Slidebars</button>
+				<button class="js-exit-slidebars">Exit Slidebars</button>
+				<button class="js-reset-slidebars-css">Reset Slidebars CSS</button>
+			</p>
+
+			<h4>Is and Get</h4>
+
+			<p>
+				<button class="js-is-active">Is Slidebars active?</button>
+				<button class="js-is-active-slidebar">Is Slidebar with id active?</button>
+				<button class="js-get-active-slidebar">Get id of active Slidebar</button>
+				<button class="js-get-all-slidebars">Get all Slidebar id's</button>
+				<button class="js-get-slidebar">Get Slidebar by id</button>
+			</p>
+
+			<h4>Callbacks</h4>
+
+			<p>
+				<button class="js-init-callback">Init callback</button>
+				<button class="js-exit-callback">Exit callback</button>
+				<button class="js-css-callback">CSS callback</button>
+				<button class="js-open-callback">Open callback</button>
+				<button class="js-close-callback">Close callback</button>
+				<button class="js-toggle-callback">Toggle callback</button>
+			</p>
 		</div>
 
-		<div canvas>
+		<div off-canvas="slidebar-1 left reveal">
+			<p>Slidebar with id 'slidebar-1' on the left side and reveal style.</p>
 		</div>
 
-		<div off-canvas="off-canvas-1 top reveal">
+		<div off-canvas="slidebar-2 right shift">
+			<p>Slidebar with id 'slidebar-2' on the right side and shift style.</p>
 		</div>
 
-		<div id="right-slidebar" off-canvas="off-canvas-2 right push" class="transition-500">
+		<div off-canvas="slidebar-3 top push">
+			<p>Slidebar with id 'slidebar-3' on the top and push style.</p>
 		</div>
 
-		<div off-canvas="off-canvas-3 bottom overlay" class="transition-1000">
+		<div off-canvas="slidebar-4 bottom overlay">
+			<p>Slidebar with id 'slidebar-4' on the bottom and overlay style.</p>
 		</div>
 
-		<div off-canvas="off-canvas-4 left reveal">
-		</div>
-
-		<script src="slidebars-extended.js"></script>
-		<script>
-			( function ( $ ) {
-				// Create a new instance of Slidebars
-				var controller = new slidebars();
-
-				// Test events
-				$( controller.events ).on( 'init', function () {
-					console.log( 'Slidebars initialized' );
-				} );
-
-				$( controller.events ).on( 'opening', function ( event, id ) {
-					console.log( 'Opening a Slidebar' );
-
-					if ( id ) {
-						console.log( id );
-					}
-
-					if ( id === 'off-canvas-5' ) {
-						console.log( 'Opening top' );
-					}
-				} );
-
-				// Initialize Slidebars
-				controller.init();
-
-				// Dummy content
-				var content =  '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla hendrerit volutpat neque. Nam a ipsum mauris. Maecenas nisi elit, dapibus sit amet eleifend a, vulputate vel ligula. Phasellus in sagittis nulla. Ut tincidunt sapien in metus sollicitudin viverra. Suspendisse potenti. In ac sapien nulla. Fusce vel augue eu nisi blandit accumsan sit amet ut tellus. Fusce sit amet tortor lobortis, suscipit magna a, rutrum est. Sed imperdiet urna id magna consequat blandit. Curabitur sodales feugiat est, eget mattis enim consectetur ac. In efficitur luctus odio aliquam suscipit. Ut commodo enim sit amet aliquam sodales. Nullam porta lorem vel molestie aliquet. Praesent eget ligula aliquet, semper sapien eu, scelerisque massa. Integer pharetra lectus tellus.</p><p>Morbi sed iaculis lacus, ac feugiat mauris. Nunc nec sodales ex, a condimentum dolor. Curabitur erat massa, lacinia quis pellentesque in, pretium non lacus. Mauris luctus neque a elit gravida, sed bibendum neque pharetra. Curabitur tortor tellus, sollicitudin a mauris at, luctus feugiat nibh. Integer vel feugiat odio. Donec arcu lacus, pretium sed posuere nec, laoreet sed urna. Mauris maximus dolor et posuere volutpat. Aliquam erat volutpat. Duis tempor cursus arcu, quis pretium dolor scelerisque interdum. Cras enim ante, consectetur ut blandit eget, posuere at mauris. Proin in turpis egestas nunc fringilla scelerisque non ac enim. Sed porta elit ut lorem elementum, id dignissim erat lacinia.</p>';
-
-				// Create a few Slidebars
-				controller.create( 'off-canvas-5', 'top', 'shift', content );
-				controller.create( 'off-canvas-6', 'right', 'reveal', '<p>This is the content to be inserted.</p>' );
-				controller.create( 'off-canvas-7', 'bottom', 'reveal', content );
-
-				// Destroy a Slidebar
-				$( '#destroy-top' ).on( 'click', function () {
-					controller.destroy( 'off-canvas-1', function () {
-						alert( 'Boom!' );
-					} );
-				} );
-
-				// Open Slidebars
-				$( '#open-top' ).on( 'click', function () {
-					controller.open( 'off-canvas-5' );
-				} );
-
-				$( '#open-right' ).on( 'click', function () {
-					controller.open( 'off-canvas-2' );
-				} );
-
-				$( '#open-bottom' ).on( 'click', function () {
-					controller.open( 'off-canvas-3' );
-				} );
-
-				$( '#open-left' ).on( 'click', function () {
-					controller.open( 'off-canvas-4' );
-				} );
-
-				$( '#close-top' ).on( 'click', function () {
-					controller.close( 'off-canvas-5', function () {
-						console.log( 'Callback function on close' );
-					} );
-				} );
-
-				$( '#close-any' ).on( 'click', function () {
-					controller.close();
-				} );
-
-				$( '#check-top' ).on( 'click', function () {
-					console.log ( controller.active( 'off-canvas-5' ) );
-				} );
-
-				$( '#check-any' ).on( 'click', function () {
-					console.log( controller.active( 'slidebar' ) );
-				} );
-
-				$( '#exit' ).on( 'click', function () {
-					controller.exit( function () {
-						alert( 'Bye' );
-					} );
-				} );
-
-				$( '#init' ).on( 'click', function () {
-					controller.init();
-				} );
-
-				$( '#get' ).on( 'click', function () {
-					var getWhat = prompt( 'Enter a Slidebar id or leave blank for array of Slidebar ids.', '' );
-
-					console.log( controller.get( getWhat) );
-				} );
-
-				$( '#modify-bottom' ).on( 'click', function () {
-					controller.modify( 'off-canvas-5', 'bottom', 'overlay' );
-				} );
-
-				$( '#modify-top' ).on( 'click', function () {
-					controller.modify( 'off-canvas-5', 'top', 'reveal', function () {
-						controller.open('off-canvas-5');
-					} );
-				} );
-			} ) ( jQuery );
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="slidebars.js"></script>
+		<script src="scripts.js"></script>
 	</body>
 </html>
